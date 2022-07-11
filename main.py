@@ -106,17 +106,23 @@
 #         20849603980134001723930671666823555245252804609722
 #         53503534226472524250874054075591789781264330331690
 
-def main():
+def main(filename: str) -> str:
     """
     Returns the first 10 digits (as a string) of the sum of the
-      one-hundred 50-digit numbers listed in `numbers.txt`.
+      one-hundred 50-digit numbers listed in `filename`.
 
     Args:
+        filename (str): File containing numbers to be added
 
     Returns:
-        First 10 digits of sum as a string.
+        (str): First 10 digits of sum as a string
+
+    Raises:
+        AssertError: if incorrect args are given
     """
-    with open('numbers.txt') as f:
+    assert type(filename) == str
+
+    with open(filename) as f:
         big_num_strs = [line.strip() for line in f.readlines()]
 
     # Truncate to only first 12 digits of each,
@@ -129,6 +135,7 @@ def main():
 
 
 if __name__ == '__main__':
-    digits = main()
+    numbers_filename = 'numbers.txt'
+    digits = main(numbers_filename)
     print('First 10 digits of sum of one-hundred 50-digit numbers:')
     print('  {}'.format(' '.join(list(digits))))
